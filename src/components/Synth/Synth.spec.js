@@ -1,10 +1,7 @@
 import React from "react";
 import {shallow} from "enzyme";
 import Synth from "./Synth";
-
-window.AudioContext = jest.fn().mockImplementation(() => {
-  return {};
-});
+require("./AudioContext.mock.js");
 
 describe("Synth", () => {
   let wrapper;
