@@ -6,6 +6,23 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+body,
+html {
+	margin: 0;
+	top: 0;
+	left: 0;
+	right: 0;
+	min-height: 100%;
+	position: absolute;
+	background: -linear-gradient(bottom, #0DAD83, #109A93);
+	background: -webkit-linear-gradient(rgb(13, 168, 173), rgb(16, 133, 154));
+	text-align: center;
+	user-select: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+}
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
