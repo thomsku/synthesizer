@@ -6,7 +6,7 @@ cache:
   - node_modules
 script:
   - npm install -g codecov
-  - npm test --coverage && codecov
+  - npm test -- --coverage && codecov
   - npm run build
 deploy:
   provider: pages
