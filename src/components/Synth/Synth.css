@@ -1,0 +1,8 @@
+.parameters {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.radio, .radiolabel {
+  color: white !important;
+}

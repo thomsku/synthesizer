@@ -22,9 +22,14 @@ html {
 	-moz-user-select: none;
 	-ms-user-select: none;
 	-o-user-select: none;
+	color: rgba(0, 0, 0, 0.54);
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+h2 {
+	font-weight: 400;
 }

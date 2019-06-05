@@ -6,7 +6,7 @@ describe("Envelope", () => {
   let wrapper;
   beforeEach(() => wrapper = shallow(<Envelope setEnvelope={jest.fn()} />));
 
-  it("should render a <div />", () => {
-    expect(wrapper.find("div")).toHaveLength(1);
+  it("should render 3 <div />", () => {
+    expect(wrapper.find("div")).toHaveLength(3);
   });
 });

@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.0.2",
+    "@material-ui/lab": "^4.0.0-alpha.15",
+    "adsr-envelope-graph": "^0.1.1",
     "fastidious-envelope-generator": "^2.0.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
@@ -12,6 +15,7 @@
     "babel-eslint": "^10.0.1",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.13.2",
+    "enzyme-to-json": "^3.3.5",
     "eslint": "^5.16.0",
     "eslint-config-google": "^0.12.0",
     "eslint-plugin-jest": "^22.6.4",
@@ -37,6 +41,11 @@
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
+    ]
+  },
+  "jest": {
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
     ]
   },
   "homepage": "https://thomsku.github.io/synthesizer/"

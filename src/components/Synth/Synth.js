@@ -3,6 +3,7 @@ import AudioAnalyser from "../AudioAnalyser/AudioAnalyser";
 import Tuning from "../Tuning/Tuning";
 import Waveform from "../Waveform/Waveform";
 import Envelope from "../Envelope/Envelope";
+import "./Synth.css";
 const EnvGen = require("fastidious-envelope-generator");
 
 // This is tuned to just intonation
@@ -26,26 +27,26 @@ class Synth extends React.Component {
     this.state = {
       activeOscillators: {},
       audioData: new Uint8Array(0),
+      tuning: "just",
+      waveform: "sine",
     };
 
     this.counter = 0;
     this.handleKeyDown = this.handleKeyDown.bind(this);
     this.handleKeyUp = this.handleKeyUp.bind(this);
     this.tick = this.tick.bind(this);
+    this.play = this.play.bind(this);
+    this.stop = this.stop.bind(this);
+    this.setTuning = this.setTuning.bind(this);
+    this.setWaveform = this.setWaveform.bind(this);
   }
 
   componentDidMount() {
     this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
-    this.amp = this.audioContext.createGain();
-    this.amp.gain.value = 0.2;
     this.analyser = this.audioContext.createAnalyser();
     this.analyser.minDecibels = -50;
     this.analyser.maxDecibels = -10;
     this.analyser.smoothingTimeConstant = 0.85;
-
-    this.amp.connect(this.analyser);
-    this.amp.connect(this.audioContext.destination);
-    // this.analyser.fftSize = 256;
     this.dataArray = new Uint8Array(this.analyser.frequencyBinCount);
     document.addEventListener("keydown", this.handleKeyDown);
     document.addEventListener("keyup", this.handleKeyUp);
@@ -55,7 +56,7 @@ class Synth extends React.Component {
   componentWillUnmount() {
     cancelAnimationFrame(this.rafId);
     this.analyser.disconnect();
-    this.source.disconnect();
+    // this.source.disconnect();
   }
 
   tick() {
@@ -70,41 +71,65 @@ class Synth extends React.Component {
   handleKeyDown(event) {
     const key = event.key;
     if (!this.state.activeOscillators[key] && keyToFrequency[key]) {
-      const oscillator = this.audioContext.createOscillator();
-      oscillator.frequency.setValueAtTime(keyToFrequency[key], this.audioContext.currentTime);
-      this.setState((prevState) => ({
-        activeOscillators: {
-          ...prevState.activeOscillators,
-          [key]: oscillator,
-        },
-      }));
-      this.state.activeOscillators[key].connect(this.amp);
-      this.state.activeOscillators[key].start();
-      this.eg = new EnvGen(this.audioContext, this.amp.gain);
-      this.eg.mode = "ADSR";
-      this.eg.attackTime = 1;
-      this.eg.decayTime = 1;
-      this.eg.releaseTime = 1;
-      this.eg.gateOn(this.audioContext.currentTime);
+      this.play(key);
     }
   }
 
   handleKeyUp(event) {
     const key = event.key;
     if (this.state.activeOscillators[key]) {
-      this.state.activeOscillators[key].stop();
-      delete this.state.activeOscillators[key];
-      this.eg.gateOff(this.audioContext.currentTime);
+      this.stop(key);
     }
+  }
+
+  play(key) {
+    const oscillator = this.audioContext.createOscillator();
+    oscillator.frequency.setValueAtTime(keyToFrequency[key], this.audioContext.currentTime);
+    const amp = this.audioContext.createGain();
+    amp.gain.value = 0.2;
+    amp.connect(this.analyser);
+    amp.connect(this.audioContext.destination);
+    const envelope = new EnvGen(this.audioContext, amp.gain);
+    envelope.mode = "ADSR";
+    envelope.attackTime = 0.01;
+    envelope.decayTime = 0.01;
+    envelope.sustainLevel = 0;
+    envelope.releaseTime = 0.1;
+    this.setState((prevState) => ({
+      activeOscillators: {
+        ...prevState.activeOscillators,
+        [key]: {oscillator: oscillator, amp: amp, envelope: envelope},
+      },
+    }));
+    this.state.activeOscillators[key].oscillator.connect(this.state.activeOscillators[key].amp);
+    this.state.activeOscillators[key].oscillator.start();
+    this.state.activeOscillators[key].envelope.gateOn(this.audioContext.currentTime);
+  }
+
+  stop(key) {
+    this.state.activeOscillators[key].envelope.gateOff(this.audioContext.currentTime);
+    // this.state.activeOscillators[key].oscillator.stop();
+    delete this.state.activeOscillators[key];
+  }
+
+  setTuning(event) {
+    this.setState({tuning: event.target.value});
+  }
+
+  setWaveform(event) {
+    this.setState({waveform: event.target.value});
   }
 
   render() {
     return (
       <div className="synthDiv">
         <AudioAnalyser activeOscillators={this.state.activeOscillators}/>
-        <Tuning setTuning={this.setTuning} />
-        <Waveform setWaveform={this.setWaveform}/>
-        <Envelope setEnvelope={this.setEnvelope}/>
+        <h2>Synth Parameters</h2>
+        <div className="parameters">
+          <Tuning setTuning={this.setTuning} tuning={this.state.tuning} />
+          <Waveform setWaveform={this.setWaveform} waveform={this.state.waveform}/>
+          <Envelope setEnvelope={this.setEnvelope}/>
+        </div>
       </div>
     );
   }
