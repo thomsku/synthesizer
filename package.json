@@ -26,7 +26,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+  "coverage": "react-scripts test --coverage"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -46,6 +47,10 @@
   "jest": {
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,ts,tsx}",
+      "!src/**/*.mock.js"
     ]
   },
   "homepage": "https://thomsku.github.io/synthesizer/"
