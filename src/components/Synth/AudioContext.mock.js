@@ -90,6 +90,8 @@ SOFTWARE. */
 
     AudioParam.prototype.setTargetValueAtTime = function() {};
 
+    AudioParam.prototype.setTargetAtTime = function() {};
+
     AudioParam.prototype.setValueAtTime = function() {};
 
     AudioParam.prototype.setValueCurveAtTime = function() {};
@@ -141,8 +143,12 @@ SOFTWARE. */
     extend(OscillatorNode, superClass);
 
     function OscillatorNode() {
+      this.frequency = new AudioParam();
       return OscillatorNode.__super__.constructor.apply(this, arguments);
     }
+
+    AudioNode.prototype.start = function() {};
+    AudioNode.prototype.stop = function() {};
 
     return OscillatorNode;
   })(AudioSourceNode);
