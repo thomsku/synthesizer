@@ -1,4 +1,4 @@
-[![Codecov Coverage](https://img.shields.io/codecov/c/github/thomsku/synthesizer/&lt;development.svg?style=flat-square)](https://codecov.io/gh/thomsku/synthesizer/)
+[![Codecov Coverage](https://img.shields.io/codecov/c/github/thomsku/synthesizer/master.svg?style=flat-square)](https://codecov.io/gh/thomsku/synthesizer/)
 
 ## Synthesizer
 
