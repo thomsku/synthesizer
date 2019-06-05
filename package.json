@@ -50,7 +50,9 @@
     ],
     "collectCoverageFrom": [
       "src/**/*.{js,jsx,ts,tsx}",
-      "!src/**/*.mock.js"
+      "!src/**/*.mock.js",
+      "!src/index.js",
+      "!src/serviceWorker.js"
     ]
   },
   "homepage": "https://thomsku.github.io/synthesizer/"
