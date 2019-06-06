@@ -7,6 +7,9 @@ import Tuning from "../Tuning/Tuning";
 import Waveform from "../Waveform/Waveform";
 import Envelope from "../Envelope/Envelope";
 import {RadioGroup} from "@material-ui/core";
+import {Slider} from "@material-ui/lab";
+import EnvelopeGraph from "adsr-envelope-graph";
+import {justKeyToFrequency, equalKeyToFrequency} from "./frequencies.js";
 require("./AudioContext.mock.js");
 
 describe("Synth", () => {
@@ -24,7 +27,10 @@ describe("Synth", () => {
       <AudioAnalyser activeOscillators={wrapper.instance().state.activeOscillators}/>,
       <Tuning setTuning={wrapper.instance().setTuning} tuning="just"/>,
       <Waveform setWaveform={wrapper.instance().setWaveform} waveform="sine"/>,
-      <Envelope setEnvelope={wrapper.instance().setEnvelope}/>,
+      <Envelope
+        setEnvelope={wrapper.instance().setEnvelope}
+        envelope={{attack: 0.1, decay: 0.01, sustain: 1, release: 0.1}}
+      />,
     ])).toEqual(true);
   });
 });
@@ -93,5 +99,111 @@ describe("mounted Synth", () => {
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
+  it("calls setEnvelope when the envelope sliders are changed", () => {
+    const spy = jest.spyOn(wrapper.instance(), "setEnvelope");
+    wrapper.instance().forceUpdate();
+    expect(spy).toHaveBeenCalledTimes(0);
+    wrapper.find(Slider).at(0).props().onChange(null, 0.2);
+    expect(spy).toHaveBeenCalledTimes(1);
+    wrapper.find(Slider).at(1).props().onChange(null, 0.2);
+    expect(spy).toHaveBeenCalledTimes(2);
+    wrapper.find(Slider).at(2).props().onChange(null, 0.2);
+    expect(spy).toHaveBeenCalledTimes(3);
+    wrapper.find(Slider).at(3).props().onChange(null, 0.2);
+    expect(spy).toHaveBeenCalledTimes(4);
+  });
+
   afterAll(() => wrapper.unmount());
+});
+
+describe("play", () => {
+  let wrapper;
+  beforeEach(() => wrapper = shallow(<Synth />));
+
+  it("updates activeOscillators", () => {
+    expect(wrapper.state("activeOscillators")).toEqual({});
+    wrapper.instance().play("a");
+    expect(wrapper.state("activeOscillators")).toHaveProperty("a");
+  });
+
+  it("plays an oscillator with the correct pitch", () => {
+    wrapper.setState({tuning: {type: "equal", frequencies: equalKeyToFrequency}});
+    wrapper.instance().play("d");
+    expect(wrapper.state().activeOscillators["d"].oscillator.frequency.value).toEqual(329.63);
+  });
+
+  it("plays an oscillator with the correct waveform", () => {
+    wrapper.setState({waveform: "triangle"});
+    wrapper.instance().play("d");
+    expect(wrapper.state().activeOscillators["d"].oscillator.type).toEqual("triangle");
+  });
+
+  it("plays an oscillator with the correct envelope", () => {
+    const envelope = {attack: 1, decay: 1, sustain: 0.9, release: 1};
+    wrapper.setState({envelope: envelope});
+    wrapper.instance().play("d");
+    expect(wrapper.state().activeOscillators["d"].envelope.attackTime).toEqual(envelope.attack);
+    expect(wrapper.state().activeOscillators["d"].envelope.decayTime).toEqual(envelope.decay);
+    expect(wrapper.state().activeOscillators["d"].envelope.sustainLevel).toEqual(envelope.sustain);
+    expect(wrapper.state().activeOscillators["d"].envelope.releaseTime).toEqual(envelope.release);
+  });
+});
+
+describe("setTuning", () => {
+  let wrapper;
+  beforeEach(() => wrapper = shallow(<Synth />));
+
+  it("updates tuning type and frequency object in state", () => {
+    expect(wrapper.state("tuning")).toEqual({type: "just", frequencies: justKeyToFrequency});
+    wrapper.instance().setTuning({target: {value: "equal"}});
+    expect(wrapper.state("tuning")).toEqual({type: "equal", frequencies: equalKeyToFrequency});
+    wrapper.instance().setTuning({target: {value: "just"}});
+    expect(wrapper.state("tuning")).toEqual({type: "just", frequencies: justKeyToFrequency});
+  });
+});
+
+describe("setWaveform", () => {
+  let wrapper;
+  beforeEach(() => wrapper = shallow(<Synth />));
+
+  it("updates waveform in state", () => {
+    expect(wrapper.state("waveform")).toEqual("sine");
+    wrapper.instance().setWaveform({target: {value: "square"}});
+    expect(wrapper.state("waveform")).toEqual("square");
+  });
+});
+
+describe("setEnvelope", () => {
+  let wrapper;
+  beforeEach(() => wrapper = mount(<Synth />));
+
+  it("updates envelope in state", () => {
+    expect(wrapper.state("envelope")).toEqual({attack: 0.1, decay: 0.01, sustain: 1, release: 0.1});
+    wrapper.instance().setEnvelope("attack", 1);
+    expect(wrapper.state("envelope")).toEqual({attack: 1, decay: 0.01, sustain: 1, release: 0.1});
+  });
+
+  it("updates EnvelopeGraph attack", () => {
+    wrapper.instance().setEnvelope("attack", 1);
+    wrapper.update();
+    expect(wrapper.find(EnvelopeGraph).props().a).toEqual(1);
+  });
+
+  it("updates EnvelopeGraph decay", () => {
+    wrapper.instance().setEnvelope("decay", 1);
+    wrapper.update();
+    expect(wrapper.find(EnvelopeGraph).props().d).toEqual(1);
+  });
+
+  it("updates EnvelopeGraph sustain", () => {
+    wrapper.instance().setEnvelope("sustain", 0.9);
+    wrapper.update();
+    expect(wrapper.find(EnvelopeGraph).props().s).toEqual(0.9);
+  });
+
+  it("updates EnvelopeGraph release", () => {
+    wrapper.instance().setEnvelope("release", 1);
+    wrapper.update();
+    expect(wrapper.find(EnvelopeGraph).props().r).toEqual(1);
+  });
 });

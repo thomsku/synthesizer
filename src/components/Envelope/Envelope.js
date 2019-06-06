@@ -4,6 +4,7 @@ import Slider from "@material-ui/lab/Slider";
 import Typography from "@material-ui/core/Typography";
 import {withStyles} from "@material-ui/core/styles";
 import {fade} from "@material-ui/core/styles/colorManipulator";
+import PropTypes from "prop-types";
 import "./Envelope.css";
 
 const StyledSlider = withStyles({
@@ -36,20 +37,11 @@ const StyledSlider = withStyles({
 class Envelope extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      attack: 0.1,
-      decay: 0.1,
-      sustain: 0.5,
-      release: 0.1,
-    };
-
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(event, value, type) {
-    console.log(type);
-    this.setState({[type]: value});
+    this.props.setEnvelope(type, value);
   }
   render() {
     return (
@@ -57,10 +49,10 @@ class Envelope extends React.Component {
         <div className="graph">
           <EnvelopeGraph style={
             {height: "100%", width: "100%"}}
-          a={this.state.attack}
-          d={this.state.decay}
-          s={this.state.sustain}
-          r={this.state.release}
+          a={this.props.envelope.attack}
+          d={this.props.envelope.decay}
+          s={this.props.envelope.sustain}
+          r={this.props.envelope.release}
           />
         </div>
         <div className="sliders">
@@ -69,7 +61,7 @@ class Envelope extends React.Component {
           <StyledSlider
             id="attack"
             className="slider"
-            value={this.state.attack}
+            value={this.props.envelope.attack}
             min={0.01}
             max={5}
             aria-labelledby="label"
@@ -81,7 +73,7 @@ class Envelope extends React.Component {
           <StyledSlider
             id="attack"
             className="slider"
-            value={this.state.decay}
+            value={this.props.envelope.decay}
             min={0.01}
             max={5}
             aria-labelledby="label"
@@ -93,7 +85,7 @@ class Envelope extends React.Component {
           <StyledSlider
             id="attack"
             className="slider"
-            value={this.state.sustain}
+            value={this.props.envelope.sustain}
             min={0}
             max={1}
             aria-labelledby="label"
@@ -105,7 +97,7 @@ class Envelope extends React.Component {
           <StyledSlider
             id="attack"
             className="slider release"
-            value={this.state.release}
+            value={this.props.envelope.release}
             min={0.01}
             max={5}
             aria-labelledby="label"
@@ -118,5 +110,10 @@ class Envelope extends React.Component {
     );
   }
 }
+
+Envelope.propTypes = {
+  setEnvelope: PropTypes.func.isRequired,
+  envelope: PropTypes.objectOf(PropTypes.number).isRequired,
+};
 
 export default Envelope;
