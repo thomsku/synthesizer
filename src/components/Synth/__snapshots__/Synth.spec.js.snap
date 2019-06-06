@@ -21,7 +21,17 @@ exports[`Synth should render correctly 1`] = `
       setWaveform={[Function]}
       waveform="sine"
     />
-    <Envelope />
+    <Envelope
+      envelope={
+        Object {
+          "attack": 0.1,
+          "decay": 0.01,
+          "release": 0.1,
+          "sustain": 1,
+        }
+      }
+      setEnvelope={[Function]}
+    />
   </div>
 </div>
 `;
