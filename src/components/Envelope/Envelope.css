@@ -1,6 +1,7 @@
 .graph {
   height: 10em;
   width: 25em;
+  margin-top: 0.5em;
 }
 
 .slider {

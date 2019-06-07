@@ -2,6 +2,7 @@ import React from "react";
 import EnvelopeGraph from "adsr-envelope-graph";
 import Slider from "@material-ui/lab/Slider";
 import Typography from "@material-ui/core/Typography";
+import FormLabel from "@material-ui/core/FormLabel";
 import {withStyles} from "@material-ui/core/styles";
 import {fade} from "@material-ui/core/styles/colorManipulator";
 import PropTypes from "prop-types";
@@ -46,6 +47,7 @@ class Envelope extends React.Component {
   render() {
     return (
       <div className="envelope">
+        <FormLabel component="legend">Envelope</FormLabel>
         <div className="graph">
           <EnvelopeGraph style={
             {height: "100%", width: "100%"}}
@@ -63,7 +65,7 @@ class Envelope extends React.Component {
             className="slider"
             value={this.props.envelope.attack}
             min={0.01}
-            max={5}
+            max={2}
             aria-labelledby="label"
             onChange={(event, value) => {
               this.handleChange(event, value, "attack");
@@ -75,7 +77,7 @@ class Envelope extends React.Component {
             className="slider"
             value={this.props.envelope.decay}
             min={0.01}
-            max={5}
+            max={2}
             aria-labelledby="label"
             onChange={(event, value) => {
               this.handleChange(event, value, "decay");
@@ -99,7 +101,7 @@ class Envelope extends React.Component {
             className="slider release"
             value={this.props.envelope.release}
             min={0.01}
-            max={5}
+            max={2}
             aria-labelledby="label"
             onChange={(event, value) => {
               this.handleChange(event, value, "release");

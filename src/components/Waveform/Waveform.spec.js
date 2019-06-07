@@ -6,6 +6,8 @@ describe("Waveform", () => {
   let wrapper;
   beforeEach(() => wrapper = shallow(<Waveform setWaveform={jest.fn()} waveform="sine"/>));
 
+  it("should render correctly", () => expect(wrapper).toMatchSnapshot());
+
   it("should render a <div />", () => {
     expect(wrapper.find("div")).toHaveLength(1);
   });

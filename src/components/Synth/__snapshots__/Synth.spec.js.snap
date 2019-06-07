@@ -6,6 +6,19 @@ exports[`Synth should render correctly 1`] = `
 >
   <AudioAnalyser
     activeOscillators={Object {}}
+    amp={
+      GainNode {
+        "gain": AudioGain {
+          "value": 0.2,
+        },
+      }
+    }
+    audioContext={
+      AudioContext {
+        "destination": AudioDestinationNode {},
+        "listener": AudioListener {},
+      }
+    }
   />
   <h2>
     Synth Parameters

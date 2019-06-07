@@ -1,0 +1,89 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Envelope should render correctly 1`] = `
+<div
+  className="envelope"
+>
+  <WithStyles(WithFormControlContext(ForwardRef(FormLabel)))
+    component="legend"
+  >
+    Envelope
+  </WithStyles(WithFormControlContext(ForwardRef(FormLabel)))>
+  <div
+    className="graph"
+  >
+    <EnvelopeGraph
+      a={0.1}
+      d={0.01}
+      r={0.1}
+      s={1}
+      style={
+        Object {
+          "height": "100%",
+          "width": "100%",
+        }
+      }
+    />
+  </div>
+  <div
+    className="sliders"
+  >
+    <WithStyles(ForwardRef(Typography))
+      id="label"
+    >
+      A
+    </WithStyles(ForwardRef(Typography))>
+    <WithStyles(WithStyles(ForwardRef(Slider)))
+      aria-labelledby="label"
+      className="slider"
+      id="attack"
+      max={2}
+      min={0.01}
+      onChange={[Function]}
+      value={0.1}
+    />
+    <WithStyles(ForwardRef(Typography))
+      id="label"
+    >
+      D
+    </WithStyles(ForwardRef(Typography))>
+    <WithStyles(WithStyles(ForwardRef(Slider)))
+      aria-labelledby="label"
+      className="slider"
+      id="attack"
+      max={2}
+      min={0.01}
+      onChange={[Function]}
+      value={0.01}
+    />
+    <WithStyles(ForwardRef(Typography))
+      id="label"
+    >
+      S
+    </WithStyles(ForwardRef(Typography))>
+    <WithStyles(WithStyles(ForwardRef(Slider)))
+      aria-labelledby="label"
+      className="slider"
+      id="attack"
+      max={1}
+      min={0}
+      onChange={[Function]}
+      value={1}
+    />
+    <WithStyles(ForwardRef(Typography))
+      id="label"
+    >
+      R
+    </WithStyles(ForwardRef(Typography))>
+    <WithStyles(WithStyles(ForwardRef(Slider)))
+      aria-labelledby="label"
+      className="slider release"
+      id="attack"
+      max={2}
+      min={0.01}
+      onChange={[Function]}
+      value={0.1}
+    />
+  </div>
+</div>
+`;

@@ -14,7 +14,7 @@ html {
 	right: 0;
 	min-height: 100%;
 	position: absolute;
-	background: -linear-gradient(bottom, #0DAD83, #109A93);
+	background: -linear-gradient(bottom, rgb(13, 168, 173), rgb(16, 133, 154));
 	background: -webkit-linear-gradient(rgb(13, 168, 173), rgb(16, 133, 154));
 	text-align: center;
 	user-select: none;

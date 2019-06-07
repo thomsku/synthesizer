@@ -14,6 +14,8 @@ require("./AudioContext.mock.js");
 
 describe("Synth", () => {
   let wrapper;
+
+  console.log(window.audioContext)
   beforeEach(() => wrapper = shallow(<Synth />));
 
   it("should render correctly", () => expect(wrapper).toMatchSnapshot());
@@ -24,7 +26,10 @@ describe("Synth", () => {
 
   it("should render the AudioAnalyser, Tuning, Waveform and Envelope Components", () => {
     expect(wrapper.containsAllMatchingElements([
-      <AudioAnalyser activeOscillators={wrapper.instance().state.activeOscillators}/>,
+      <AudioAnalyser
+        audioContext={wrapper.instance().audioContext}
+        activeOscillators={wrapper.instance().state.activeOscillators}
+        amp={wrapper.instance().volume}/>,
       <Tuning setTuning={wrapper.instance().setTuning} tuning="just"/>,
       <Waveform setWaveform={wrapper.instance().setWaveform} waveform="sine"/>,
       <Envelope
@@ -39,6 +44,7 @@ describe("mounted Synth", () => {
   let wrapper;
   window.HTMLCanvasElement.prototype.getContext = () => {
     return {
+      width: 0,
       beginPath: jest.fn(),
       clearRect: jest.fn(),
       lineTo: jest.fn(),
