@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-key */
 import React from "react";
 import {shallow, mount} from "enzyme";
 import Synth from "./Synth";
@@ -14,25 +13,31 @@ require("./AudioContext.mock.js");
 
 describe("Synth", () => {
   let wrapper;
-
-  console.log(window.audioContext)
   beforeEach(() => wrapper = shallow(<Synth />));
 
   it("should render correctly", () => expect(wrapper).toMatchSnapshot());
 
-  it("should render two <div />", () => {
-    expect(wrapper.find("div")).toHaveLength(2);
+  it("should render three <div />", () => {
+    expect(wrapper.find("div")).toHaveLength(3);
   });
 
   it("should render the AudioAnalyser, Tuning, Waveform and Envelope Components", () => {
     expect(wrapper.containsAllMatchingElements([
       <AudioAnalyser
+        key="AudioAnalyser"
         audioContext={wrapper.instance().audioContext}
         activeOscillators={wrapper.instance().state.activeOscillators}
         amp={wrapper.instance().volume}/>,
-      <Tuning setTuning={wrapper.instance().setTuning} tuning="just"/>,
-      <Waveform setWaveform={wrapper.instance().setWaveform} waveform="sine"/>,
+      <Tuning
+        key="Tuning"
+        setTuning={wrapper.instance().setTuning}
+        tuning="just"/>,
+      <Waveform
+        key="Waveform"
+        setWaveform={wrapper.instance().setWaveform}
+        waveform="sine"/>,
       <Envelope
+        key="Envelope"
         setEnvelope={wrapper.instance().setEnvelope}
         envelope={{attack: 0.1, decay: 0.01, sustain: 1, release: 0.1}}
       />,

@@ -11,19 +11,19 @@ const Waveform = ({
   waveform,
 }) => {
   return (
-    <div className="waveformRadioButtons">
-      <FormLabel component="legend">Waveform</FormLabel>
+    <div className="radiobuttons">
+      <FormLabel className="parametertitle" component="legend">Waveform</FormLabel>
       <RadioGroup
         aria-label="Waveform"
         name="waveform"
-        className="RadioGroup"
+        className="radiogroup"
         value={waveform}
         onChange={setWaveform}
       >
-        <FormControlLabel className="radiolabel" value="sine" control={<Radio className="radio"/>} label="Sine" />
-        <FormControlLabel className="radiolabel" value="square" control={<Radio className="radio"/>} label="Square" />
-        <FormControlLabel className="radiolabel" value="sawtooth" control={<Radio className="radio"/>} label="Sawtooth" />
-        <FormControlLabel className="radiolabel" value="triangle" control={<Radio className="radio"/>} label="Triangle" />
+        <FormControlLabel className="radiolabel" value="sine" control={<Radio className="radio"/>} label="sine" />
+        <FormControlLabel className="radiolabel" value="square" control={<Radio className="radio"/>} label="square" />
+        <FormControlLabel className="radiolabel" value="sawtooth" control={<Radio className="radio"/>} label="sawtooth" />
+        <FormControlLabel className="radiolabel" value="triangle" control={<Radio className="radio"/>} label="triangle" />
 
       </RadioGroup>
     </div>

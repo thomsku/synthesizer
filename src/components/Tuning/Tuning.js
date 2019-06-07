@@ -11,17 +11,17 @@ const Tuning = ({
   tuning,
 }) => {
   return (
-    <div className="tuningRadioButtons">
-      <FormLabel component="legend">Tuning</FormLabel>
+    <div className="radiobuttons">
+      <FormLabel className="parametertitle" component="legend">Tuning</FormLabel>
       <RadioGroup
         aria-label="Tuning"
         name="tuning"
-        className="RadioGroup"
+        className="radiogroup"
         value={tuning}
         onChange={setTuning}
       >
-        <FormControlLabel className="radiolabel" value="just" control={<Radio className="radio"/>} label="Just Intonation" />
-        <FormControlLabel className="radiolabel" value="equal" control={<Radio className="radio"/>} label="Equal Temperament" />
+        <FormControlLabel className="radiolabel" value="just" control={<Radio className="radio"/>} label="just intonation" />
+        <FormControlLabel className="radiolabel" value="equal" control={<Radio className="radio"/>} label="equal temperament" />
 
       </RadioGroup>
     </div>

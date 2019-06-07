@@ -108,8 +108,10 @@ class Synth extends React.Component {
         <AudioAnalyser audioContext={this.audioContext} activeOscillators={this.state.activeOscillators} amp={this.volume}/>
         <h2>Synth Parameters</h2>
         <div className="parameters">
-          <Tuning setTuning={this.setTuning} tuning={this.state.tuning.type} />
-          <Waveform setWaveform={this.setWaveform} waveform={this.state.waveform}/>
+          <div className="radioparameters">
+            <Tuning setTuning={this.setTuning} tuning={this.state.tuning.type} />
+            <Waveform setWaveform={this.setWaveform} waveform={this.state.waveform}/>
+          </div>
           <Envelope setEnvelope={this.setEnvelope} envelope={this.state.envelope}/>
         </div>
       </div>

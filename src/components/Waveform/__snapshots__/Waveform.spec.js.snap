@@ -2,16 +2,17 @@
 
 exports[`Waveform should render correctly 1`] = `
 <div
-  className="waveformRadioButtons"
+  className="radiobuttons"
 >
   <WithStyles(WithFormControlContext(ForwardRef(FormLabel)))
+    className="parametertitle"
     component="legend"
   >
     Waveform
   </WithStyles(WithFormControlContext(ForwardRef(FormLabel)))>
   <ForwardRef(RadioGroup)
     aria-label="Waveform"
-    className="RadioGroup"
+    className="radiogroup"
     name="waveform"
     onChange={[MockFunction]}
     value="sine"
@@ -23,7 +24,7 @@ exports[`Waveform should render correctly 1`] = `
           className="radio"
         />
       }
-      label="Sine"
+      label="sine"
       value="sine"
     />
     <WithStyles(WithFormControlContext(ForwardRef(FormControlLabel)))
@@ -33,7 +34,7 @@ exports[`Waveform should render correctly 1`] = `
           className="radio"
         />
       }
-      label="Square"
+      label="square"
       value="square"
     />
     <WithStyles(WithFormControlContext(ForwardRef(FormControlLabel)))
@@ -43,7 +44,7 @@ exports[`Waveform should render correctly 1`] = `
           className="radio"
         />
       }
-      label="Sawtooth"
+      label="sawtooth"
       value="sawtooth"
     />
     <WithStyles(WithFormControlContext(ForwardRef(FormControlLabel)))
@@ -53,7 +54,7 @@ exports[`Waveform should render correctly 1`] = `
           className="radio"
         />
       }
-      label="Triangle"
+      label="triangle"
       value="triangle"
     />
   </ForwardRef(RadioGroup)>

@@ -2,16 +2,17 @@
 
 exports[`Tuning should render correctly 1`] = `
 <div
-  className="tuningRadioButtons"
+  className="radiobuttons"
 >
   <WithStyles(WithFormControlContext(ForwardRef(FormLabel)))
+    className="parametertitle"
     component="legend"
   >
     Tuning
   </WithStyles(WithFormControlContext(ForwardRef(FormLabel)))>
   <ForwardRef(RadioGroup)
     aria-label="Tuning"
-    className="RadioGroup"
+    className="radiogroup"
     name="tuning"
     onChange={[MockFunction]}
     value="just"
@@ -23,7 +24,7 @@ exports[`Tuning should render correctly 1`] = `
           className="radio"
         />
       }
-      label="Just Intonation"
+      label="just intonation"
       value="just"
     />
     <WithStyles(WithFormControlContext(ForwardRef(FormControlLabel)))
@@ -33,7 +34,7 @@ exports[`Tuning should render correctly 1`] = `
           className="radio"
         />
       }
-      label="Equal Temperament"
+      label="equal temperament"
       value="equal"
     />
   </ForwardRef(RadioGroup)>

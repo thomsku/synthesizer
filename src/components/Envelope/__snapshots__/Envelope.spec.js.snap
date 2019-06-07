@@ -5,6 +5,7 @@ exports[`Envelope should render correctly 1`] = `
   className="envelope"
 >
   <WithStyles(WithFormControlContext(ForwardRef(FormLabel)))
+    className="envelopeparametertitle"
     component="legend"
   >
     Envelope
@@ -15,6 +16,11 @@ exports[`Envelope should render correctly 1`] = `
     <EnvelopeGraph
       a={0.1}
       d={0.01}
+      lineStyle={
+        Object {
+          "strokeWidth": "1.5px",
+        }
+      }
       r={0.1}
       s={1}
       style={
@@ -31,7 +37,7 @@ exports[`Envelope should render correctly 1`] = `
     <WithStyles(ForwardRef(Typography))
       id="label"
     >
-      A
+      attack
     </WithStyles(ForwardRef(Typography))>
     <WithStyles(WithStyles(ForwardRef(Slider)))
       aria-labelledby="label"
@@ -45,7 +51,7 @@ exports[`Envelope should render correctly 1`] = `
     <WithStyles(ForwardRef(Typography))
       id="label"
     >
-      D
+      decay
     </WithStyles(ForwardRef(Typography))>
     <WithStyles(WithStyles(ForwardRef(Slider)))
       aria-labelledby="label"
@@ -59,7 +65,7 @@ exports[`Envelope should render correctly 1`] = `
     <WithStyles(ForwardRef(Typography))
       id="label"
     >
-      S
+      sustain
     </WithStyles(ForwardRef(Typography))>
     <WithStyles(WithStyles(ForwardRef(Slider)))
       aria-labelledby="label"
@@ -73,7 +79,7 @@ exports[`Envelope should render correctly 1`] = `
     <WithStyles(ForwardRef(Typography))
       id="label"
     >
-      R
+      release
     </WithStyles(ForwardRef(Typography))>
     <WithStyles(WithStyles(ForwardRef(Slider)))
       aria-labelledby="label"

@@ -26,14 +26,18 @@ exports[`Synth should render correctly 1`] = `
   <div
     className="parameters"
   >
-    <Tuning
-      setTuning={[Function]}
-      tuning="just"
-    />
-    <Waveform
-      setWaveform={[Function]}
-      waveform="sine"
-    />
+    <div
+      className="radioparameters"
+    >
+      <Tuning
+        setTuning={[Function]}
+        tuning="just"
+      />
+      <Waveform
+        setWaveform={[Function]}
+        waveform="sine"
+      />
+    </div>
     <Envelope
       envelope={
         Object {
