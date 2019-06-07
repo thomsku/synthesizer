@@ -186,6 +186,8 @@ SOFTWARE. */
       return AnalyserNode.__super__.constructor.apply(this, arguments);
     }
 
+    AnalyserNode.prototype.getByteTimeDomainData = function() {};
+
     return AnalyserNode;
   })(AudioNode);
 
@@ -427,4 +429,5 @@ SOFTWARE. */
   })();
 
   window.AudioContext = AudioContext;
+  window.webkitAudioContext = AudioContext;
 })();

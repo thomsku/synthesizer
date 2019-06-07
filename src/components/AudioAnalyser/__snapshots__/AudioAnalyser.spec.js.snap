@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AudioAnalyser should render correctly 1`] = `
+<div>
+  <AudioVisualiser
+    audioData={Uint8Array []}
+  />
+</div>
+`;

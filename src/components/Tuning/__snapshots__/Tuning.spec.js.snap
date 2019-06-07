@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tuning should render correctly 1`] = `
+<div
+  className="tuningRadioButtons"
+>
+  <WithStyles(WithFormControlContext(ForwardRef(FormLabel)))
+    component="legend"
+  >
+    Tuning
+  </WithStyles(WithFormControlContext(ForwardRef(FormLabel)))>
+  <ForwardRef(RadioGroup)
+    aria-label="Tuning"
+    className="RadioGroup"
+    name="tuning"
+    onChange={[MockFunction]}
+    value="just"
+  >
+    <WithStyles(WithFormControlContext(ForwardRef(FormControlLabel)))
+      className="radiolabel"
+      control={
+        <ForwardRef(WithStyles)
+          className="radio"
+        />
+      }
+      label="Just Intonation"
+      value="just"
+    />
+    <WithStyles(WithFormControlContext(ForwardRef(FormControlLabel)))
+      className="radiolabel"
+      control={
+        <ForwardRef(WithStyles)
+          className="radio"
+        />
+      }
+      label="Equal Temperament"
+      value="equal"
+    />
+  </ForwardRef(RadioGroup)>
+</div>
+`;

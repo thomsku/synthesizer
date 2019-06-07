@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Waveform should render correctly 1`] = `
+<div
+  className="waveformRadioButtons"
+>
+  <WithStyles(WithFormControlContext(ForwardRef(FormLabel)))
+    component="legend"
+  >
+    Waveform
+  </WithStyles(WithFormControlContext(ForwardRef(FormLabel)))>
+  <ForwardRef(RadioGroup)
+    aria-label="Waveform"
+    className="RadioGroup"
+    name="waveform"
+    onChange={[MockFunction]}
+    value="sine"
+  >
+    <WithStyles(WithFormControlContext(ForwardRef(FormControlLabel)))
+      className="radiolabel"
+      control={
+        <ForwardRef(WithStyles)
+          className="radio"
+        />
+      }
+      label="Sine"
+      value="sine"
+    />
+    <WithStyles(WithFormControlContext(ForwardRef(FormControlLabel)))
+      className="radiolabel"
+      control={
+        <ForwardRef(WithStyles)
+          className="radio"
+        />
+      }
+      label="Square"
+      value="square"
+    />
+    <WithStyles(WithFormControlContext(ForwardRef(FormControlLabel)))
+      className="radiolabel"
+      control={
+        <ForwardRef(WithStyles)
+          className="radio"
+        />
+      }
+      label="Sawtooth"
+      value="sawtooth"
+    />
+    <WithStyles(WithFormControlContext(ForwardRef(FormControlLabel)))
+      className="radiolabel"
+      control={
+        <ForwardRef(WithStyles)
+          className="radio"
+        />
+      }
+      label="Triangle"
+      value="triangle"
+    />
+  </ForwardRef(RadioGroup)>
+</div>
+`;
