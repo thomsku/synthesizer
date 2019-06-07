@@ -3,6 +3,29 @@
   justify-content: space-evenly;
 }
 
+.parameters > div {
+  width: 25em;
+}
+
+.radioparameters > .radiobuttons{
+  margin-bottom: 2em;
+}
+
+.radiogroup {
+  flex-direction: row !important;
+}
+
 .radio, .radiolabel {
   color: white !important;
+}
+
+.radiolabel {
+  width: 50%;
+  margin: 0 !important;
+}
+
+.parametertitle {
+  border-bottom: 1px solid white;
+  padding-bottom: 1em !important;
+  margin-bottom: 0.5em;
 }

@@ -12,6 +12,7 @@ class AudioVisualiser extends Component {
   }
 
   draw() {
+    // draw function with still waves courtesy of: https://codepen.io/ContemporaryInsanity
     const canvas = this.canvas.current;
     const width = canvas.width;
     const height = canvas.height;

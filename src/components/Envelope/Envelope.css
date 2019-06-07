@@ -1,9 +1,16 @@
 .graph {
   height: 10em;
-  width: 25em;
-  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.envelopeparametertitle {
+  padding-bottom: 1em !important;
 }
 
 .slider {
-  padding: 22px 0px;
+  padding: 12px 0px;
+}
+
+#label {
+  color: white;
 }
